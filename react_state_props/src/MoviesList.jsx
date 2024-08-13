@@ -24,7 +24,9 @@ const MoviesList = () => {
         setMovies(movies.filter((movie, i) => i !== index));
     }
     
-    
+//Implement a button outside the list to toggle between showing all movies and only showing a specific genre (e.g., 'Action').   
+
+    const horrorMovies = ["Cube", "The Thing", "Terrifier", "Evil Dead 2"];
 
         return (
             <div>
@@ -33,14 +35,15 @@ const MoviesList = () => {
                     {movies.map((movie, index) => (
                         index == selectedMovie ? 
                         <>
-                        <li onClick={() => setSelectedMovie(index)} key={index}>{movie} <button onClick={() => deleteMovie(index)}>Delete</button></li> 
+                        <li onClick={() => setSelectedMovie(index)} key={index}>{movie} <button onClick={() => deleteMovie(index)}>Remove</button></li> 
                         <p> {description[selectedMovie]}</p>
                         </>
-                        : <li onClick={() => setSelectedMovie(index)} key={index}>{movie} <button onClick={() => deleteMovie(index)}>Delete</button></li>
+                        : <li onClick={() => setSelectedMovie(index)} key={index}>{movie} <button onClick={() => deleteMovie(index)}>Remove</button></li>
                     ))}
                 </ul>
-                    
-               
+
+                <button onClick={() => setMovies(horrorMovies)}>Horror Movies</button>        
+                
 
                 
             </div>
