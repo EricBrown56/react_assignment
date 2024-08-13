@@ -18,34 +18,37 @@ const MoviesList = () => {
         
 //For each movie, implement a feature that toggles additional details (like a brief description) when the movie title is clicked.
 
-    const changeMovies = () => {
+    const [selectedMovie, setSelectedMovie] = useState(-1)
 
-
-
-
+    const deleteMovie = index => {
+        setMovies(movies.filter((movie, i) => i !== index));
+    }
     
     
 
-    return (
-        <div>
-            
-            <ul>
-                {movies.map((movie, index) => (
-                    <li key={index}>{movie}</li>
-                ))}
-            </ul>
+        return (
+            <div>
+                
+                <ul>
+                    {movies.map((movie, index) => (
+                        index == selectedMovie ? 
+                        <>
+                        <li onClick={() => setSelectedMovie(index)} key={index}>{movie} <button onClick={() => deleteMovie(index)}>Delete</button></li> 
+                        <p> {description[selectedMovie]}</p>
+                        </>
+                        : <li onClick={() => setSelectedMovie(index)} key={index}>{movie} <button onClick={() => deleteMovie(index)}>Delete</button></li>
+                    ))}
+                </ul>
+                    
+               
 
-            <p>
-                Hello, this movie is called {movies} and it is about {description}
-            </p>
-
-            <button onClick={changeMovies}>Next Movie</button>
-        </div>
+                
+            </div>
     );
 
     };
 
-};
+
         
 
 
